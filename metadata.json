@@ -1,0 +1,6 @@
+{
+  "name": "EMBEDATHON 2026 – Hackathon Registration & Event Portal",
+  "description": "Official event and registration portal for EMBEDATHON 2026 by Dept of Electronics and Communication Engineering on 15th October 2026. Explore the Future with Embedded Technologies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

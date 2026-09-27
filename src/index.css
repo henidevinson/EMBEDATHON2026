@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 380px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --color-obsidian: #050505;
+  --color-smoke: #F2F2EA;
+  --color-marigold: #FDB515;
+  --color-mustard: #D99A00;
+  --color-ember: #FF4A12;
+  --color-crimson: #C1121F;
+  --color-crimson-dark: #7A0606;
+  --color-cream: #F5E6B8;
+
+  --font-display: 'Anton', 'Archivo Black', sans-serif;
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+  background-color: #050505;
+  color: #F2F2EA;
+}
+
+.font-display {
+  font-family: 'Anton', 'Archivo Black', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.font-body {
+  font-family: 'Barlow', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Neo-Brutalist Hard Drop Shadows from Vyugam */
+.shadow-brutal-sm {
+  box-shadow: 3px 3px 0px #7A0606;
+}
+
+.shadow-brutal {
+  box-shadow: 5px 5px 0px #7A0606;
+}
+
+.shadow-brutal-lg {
+  box-shadow: 8px 8px 0px #7A0606;
+}
+
+.shadow-brutal-xl {
+  box-shadow: 10px 10px 0px #7A0606;
+}
+
+.shadow-brutal-ember {
+  box-shadow: 5px 5px 0px #FF4A12;
+}
+
+.shadow-brutal-marigold {
+  box-shadow: 5px 5px 0px #FDB515;
+}
+
+/* Marquee tape animations */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 24s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 28s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Floating embers animations */
+@keyframes ember-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6) rotate(0deg);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-800px) scale(1.2) rotate(360deg);
+  }
+}
+
+.ember-particle {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: ember-rise linear infinite;
+}
+
+/* Pulse glow for buttons */
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow: 5px 5px 0px #7A0606, 0 0 15px rgba(253, 181, 21, 0.2);
+  }
+  50% {
+    box-shadow: 5px 5px 0px #C1121F, 0 0 25px rgba(255, 74, 18, 0.4);
+  }
+}
+
+.animate-cta-pulse {
+  animation: cta-pulse 3s infinite ease-in-out;
+}
+
+/* Custom subtle scrollbar in obsidian / marigold */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 2px;
+  border: 1px solid #333333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FDB515;
+}
+
+/* Mobile viewport and tap improvements */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+/* Prevent unwanted mobile horizontal scroll */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure inputs on small touch devices don't cause unwanted iOS viewport auto-zoom */
+@media screen and (max-width: 640px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
