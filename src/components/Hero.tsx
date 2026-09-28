@@ -71,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({ onRegisterClick, onOpenQR }) => {
         </p>
 
         {/* Key Event Badges Grid - Neo Brutalist Boxes */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-10">
           <div className="border-2 border-[#262626] bg-[#0A0806] p-2.5 sm:p-3 shadow-brutal-sm hover:border-[#FDB515] transition-all">
             <div className="flex items-center gap-1.5 text-[#FDB515] mb-1">
               <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -83,15 +83,7 @@ export const Hero: React.FC<HeroProps> = ({ onRegisterClick, onOpenQR }) => {
           <div className="border-2 border-[#262626] bg-[#0A0806] p-2.5 sm:p-3 shadow-brutal-sm hover:border-[#FDB515] transition-all">
             <div className="flex items-center gap-1.5 text-[#FDB515] mb-1">
               <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              <span className="font-mono text-[9px] sm:text-[10px] uppercase font-bold tracking-wider">Duration</span>
-            </div>
-            <div className="font-heading text-base sm:text-xl font-bold text-white uppercase">{EVENT_DETAILS.duration} Sprint</div>
-          </div>
-
-          <div className="border-2 border-[#262626] bg-[#0A0806] p-2.5 sm:p-3 shadow-brutal-sm hover:border-[#FDB515] transition-all">
-            <div className="flex items-center gap-1.5 text-[#FDB515] mb-1">
-              <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              <span className="font-mono text-[9px] sm:text-[10px] uppercase font-bold tracking-wider">Timing</span>
+              <span className="font-mono text-[9px] sm:text-[10px] uppercase font-bold tracking-wider">Event Timing</span>
             </div>
             <div className="font-heading text-base sm:text-xl font-bold text-white uppercase">{EVENT_DETAILS.timing}</div>
           </div>
@@ -112,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ onRegisterClick, onOpenQR }) => {
             <div className="font-heading text-base sm:text-xl font-bold text-white uppercase">1–4 Members</div>
           </div>
 
-          <div className="border-2 border-[#FF4A12] bg-[#0A0806] p-2.5 sm:p-3 shadow-brutal-sm hover:border-[#FDB515] transition-all">
+          <div className="border-2 border-[#FF4A12] bg-[#0A0806] p-2.5 sm:p-3 shadow-brutal-sm hover:border-[#FDB515] transition-all col-span-2 sm:col-span-1">
             <div className="flex items-center gap-1.5 text-[#FF4A12] mb-1">
               <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               <span className="font-mono text-[9px] sm:text-[10px] uppercase font-bold tracking-wider">Fee / Head</span>

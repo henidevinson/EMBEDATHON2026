@@ -18,6 +18,7 @@ import { DOMAINS, EVENT_DETAILS } from '../data/eventData';
 import { RegistrationRecord, TeamSize, TechnologyDomain } from '../types';
 import { PaymentQRCard } from './PaymentQRCard';
 import { sendRegistrationToGoogleSheet } from '../utils/googleSheetsSync';
+import { compressImage, safeGetItem } from '../utils/storage';
 
 interface RegistrationPortalProps {
   selectedDomainFromCard?: TechnologyDomain | null;
@@ -105,24 +106,34 @@ export const RegistrationPortal: React.FC<RegistrationPortalProps> = ({
 
   // Handle Screenshot Upload
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 8 * 1024 * 1024) {
-        setErrors((prev) => ({ ...prev, screenshot: 'File size must be under 8MB' }));
+      if (file.size > 15 * 1024 * 1024) {
+        setErrors((prev) => ({ ...prev, screenshot: 'File size must be under 15MB' }));
         return;
       }
       setScreenshotName(file.name);
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setScreenshotDataUrl(event.target?.result as string);
+      try {
+        const compressed = await compressImage(file, 800, 800, 0.78);
+        setScreenshotDataUrl(compressed);
         setErrors((prev) => {
           const rest = { ...prev };
           delete rest.screenshot;
           return rest;
         });
-      };
-      reader.readAsDataURL(file);
+      } catch (err) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          setScreenshotDataUrl(event.target?.result as string);
+          setErrors((prev) => {
+            const rest = { ...prev };
+            delete rest.screenshot;
+            return rest;
+          });
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -280,7 +291,7 @@ export const RegistrationPortal: React.FC<RegistrationPortalProps> = ({
 
       // Automatic Google Sheet sync to organizer's Google Sheet
       try {
-        const webhookUrl = localStorage.getItem('embedathon_sheet_webhook') || undefined;
+        const webhookUrl = safeGetItem('embedathon_sheet_webhook') || undefined;
         const res = await sendRegistrationToGoogleSheet(newRecord, webhookUrl);
         if (res.success) {
           setSyncNotice('Row automatically appended to your linked Google Sheet!');
@@ -339,7 +350,7 @@ export const RegistrationPortal: React.FC<RegistrationPortalProps> = ({
 
   return (
     <section id="register" className="py-12 sm:py-24 bg-[#080606] border-b border-[#222]">
-      <div className="mx-auto max-w-5xl px-3 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl w-full px-3 sm:px-6 lg:px-12 xl:px-16">
         
         {/* Section Header with Neo-Brutalist Heading */}
         <div className="text-center space-y-2.5 sm:space-y-3 mb-6 sm:mb-10">
@@ -481,7 +492,7 @@ export const RegistrationPortal: React.FC<RegistrationPortalProps> = ({
                                 <div class="head">
                                   <div style="font-size: 12px; font-weight: bold; color: #c1121f;">DEPARTMENT OF ELECTRONICS & COMMUNICATION ENGINEERING</div>
                                   <h1 class="title">EMBEDATHON 2026 — OFFICIAL PASS</h1>
-                                  <div class="sub">15th October 2026 · 9:30 AM – 4:30 PM · Abinantham Hall</div>
+                                  <div class="sub">15th October 2026 · Event Timing: 9:00 AM – 5:00 PM · Abinantham Hall</div>
                                 </div>
                                 <div class="row"><span class="label">PASS ID:</span><span class="val">${submittedRecord.id}</span></div>
                                 <div class="row"><span class="label">TEAM NAME:</span><span class="val">${submittedRecord.teamName}</span></div>
@@ -496,7 +507,7 @@ export const RegistrationPortal: React.FC<RegistrationPortalProps> = ({
                                 <div class="barcode"></div>
                                 <div class="foot">
                                   Present this e-ticket pass at Abinantham Hall reception along with college ID cards.<br/>
-                                  Convenor: Mr. R. Kandasamy · Helplines: +91 9840831058 / +91 97894 37018
+                                  Convener: Dr. R. Kiruba Shankar · Co-convener: Mr. R. Kandasamy · Helplines: +91 9840831058 / +91 97894 37018
                                 </div>
                               </div>
                             </body>
@@ -544,11 +555,11 @@ export const RegistrationPortal: React.FC<RegistrationPortalProps> = ({
                   </div>
 
                   <div className="font-body text-xs sm:text-sm text-[#F2F2EA]/80 space-y-1.5 border-b border-[#222] pb-3 sm:pb-4">
-                    <p className="font-bold text-[#FDB515]">8 Hours. Unlimited Ideas. Real Impact.</p>
-                    <p>Explore the Future with Embedded Technologies</p>
+                    <p className="font-bold text-[#FDB515]">Explore the Future with Embedded Technologies</p>
+                    <p>Department of Electronics and Communication Engineering</p>
                     <div className="pt-2 font-mono text-xs text-[#888] grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                       <div>📅 15th October 2026</div>
-                      <div>⏰ 9:30 AM – 4:30 PM</div>
+                      <div>⏰ Event Timing: 9:00 AM – 5:00 PM</div>
                       <div>📍 ABINANTHAM HALL</div>
                       <div>👥 Team Size: 1–4 Members (Solo / Team)</div>
                       <div>💰 Fee: ₹300 / Head</div>

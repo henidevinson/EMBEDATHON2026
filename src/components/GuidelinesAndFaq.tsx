@@ -20,7 +20,7 @@ export const GuidelinesAndFaq: React.FC = () => {
     },
     {
       q: 'How does the payment confirmation and gate pass work?',
-      a: 'Once you transfer ₹300 per head to UPI ID mrkandasamy1983-6@oksbi and submit your 12-digit UTR and screenshot, our committee verifies the bank transaction and your team is issued an approved Gate Pass for entry.',
+      a: 'Once you transfer ₹300 per head to UPI ID mrkandasamy1983-6@oksbi (INDIAN OVERSEAS BANK · Account Holder: Mr. R. Kandasamy) and submit your 12-digit UTR and screenshot, our committee verifies the transaction and your team is issued an official Gate Pass for entry.',
     },
     {
       q: 'Will lunch and refreshments be provided?',
@@ -30,7 +30,7 @@ export const GuidelinesAndFaq: React.FC = () => {
 
   return (
     <section id="guidelines" className="py-12 sm:py-24 border-b border-[#222] bg-[#050505]">
-      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1750px] w-full px-3 sm:px-6 lg:px-12 xl:px-16">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-8 sm:mb-12">
@@ -70,8 +70,8 @@ export const GuidelinesAndFaq: React.FC = () => {
               </p>
 
               <div className="border-t border-[#1c1c1c] pt-2.5 sm:pt-3 font-mono text-xs text-[#888] grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
-                <div>Reporting: 8:30 AM – 9:15 AM</div>
-                <div>Kickoff: 9:30 AM Sharp</div>
+                <div>Reporting: {EVENT_DETAILS.reportingTime}</div>
+                <div>Event: {EVENT_DETAILS.timing}</div>
               </div>
             </div>
 

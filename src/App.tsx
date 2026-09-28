@@ -16,11 +16,17 @@ import { AdminLoginModal } from './components/AdminLoginModal';
 import { PaymentQRCard } from './components/PaymentQRCard';
 import { RegistrationRecord, TechnologyDomain } from './types';
 import { INITIAL_REGISTRATIONS } from './data/eventData';
+import { cleanupBloatedStorage, safeSetItem, safeGetItem } from './utils/storage';
 
 export default function App() {
+  // Proactively purge oversized legacy base64 strings to prevent QuotaExceededError
+  useEffect(() => {
+    cleanupBloatedStorage();
+  }, []);
+
   const [registrations, setRegistrations] = useState<RegistrationRecord[]>(() => {
     try {
-      const saved = localStorage.getItem('embedathon_2026_registrations');
+      const saved = safeGetItem('embedathon_2026_registrations');
       if (saved) {
         const parsed: RegistrationRecord[] = JSON.parse(saved);
         // Clean out any legacy mock demo records
@@ -36,9 +42,19 @@ export default function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem('embedathon_2026_registrations', JSON.stringify(registrations));
+      // Save registrations safely
+      const payload = JSON.stringify(registrations);
+      const success = safeSetItem('embedathon_2026_registrations', payload);
+      if (!success) {
+        // Fallback: strip heavyweight screenshot dataUrls if quota reached
+        const lightweight = registrations.map((r) => ({
+          ...r,
+          screenshotUrl: r.screenshotUrl && r.screenshotUrl.length > 5000 ? '' : r.screenshotUrl,
+        }));
+        safeSetItem('embedathon_2026_registrations', JSON.stringify(lightweight));
+      }
     } catch (e) {
-      console.error('Failed to save registrations to local storage', e);
+      console.warn('Failed to save registrations safely to local storage', e);
     }
   }, [registrations]);
 

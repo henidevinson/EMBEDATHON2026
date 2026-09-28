@@ -30,6 +30,7 @@ import {
   GOOGLE_APPS_SCRIPT_WEBAPP_CODE,
   DEFAULT_GOOGLE_SHEET_WEBHOOK_URL,
 } from '../utils/googleSheetsSync';
+import { safeSetItem, safeGetItem } from '../utils/storage';
 
 interface OrganizerSheetModalProps {
   isOpen: boolean;
@@ -63,7 +64,7 @@ export const OrganizerSheetModal: React.FC<OrganizerSheetModalProps> = ({
   const [copiedCode, setCopiedCode] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('embedathon_sheet_webhook') || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL;
+    const saved = safeGetItem('embedathon_sheet_webhook') || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL;
     setWebhookUrl(saved);
   }, []);
 
@@ -71,7 +72,7 @@ export const OrganizerSheetModal: React.FC<OrganizerSheetModalProps> = ({
 
   const handleSaveWebhook = (url: string) => {
     setWebhookUrl(url);
-    localStorage.setItem('embedathon_sheet_webhook', url.trim());
+    safeSetItem('embedathon_sheet_webhook', url.trim());
   };
 
   const handleSyncAllToGoogleSheet = async () => {

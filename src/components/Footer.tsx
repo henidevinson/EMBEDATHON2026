@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenQR }) => {
 
   return (
     <footer className="border-t-2 border-[#222] bg-[#050505] py-10 sm:py-14 text-[#888] font-body text-xs relative z-10">
-      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1750px] w-full px-3 sm:px-6 lg:px-12 xl:px-16">
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-10 pb-6 sm:pb-10 border-b border-[#1c1c1c]">
           
@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenQR }) => {
               "{EVENT_DETAILS.tagline}"
             </p>
             <div className="font-mono text-xs text-[#FDB515] pt-1">
-              15th October 2026 · {EVENT_DETAILS.venue}
+              15th October 2026 · {EVENT_DETAILS.venue} · {EVENT_DETAILS.timing}
             </div>
           </div>
 
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenQR }) => {
                   onClick={() => scrollTo('schedule')}
                   className="hover:text-[#FDB515] transition-colors cursor-pointer"
                 >
-                  8-Hour Schedule
+                  Event Timing (9 AM – 5 PM)
                 </button>
               </li>
               <li>
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenQR }) => {
                 className="flex items-center gap-2 px-3 py-2 border border-[#333] hover:border-[#FDB515] bg-[#0A0806] hover:bg-[#111] text-[#FDB515] font-mono text-xs font-bold w-full cursor-pointer shadow-[2px_2px_0_#7A0606]"
               >
                 <QrCode className="h-4 w-4" />
-                <span>Convenor UPI QR Card</span>
+                <span>UPI QR Payment Card</span>
               </button>
 
               <div className="pt-2 font-mono text-xs text-[#888] space-y-1">

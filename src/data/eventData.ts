@@ -10,7 +10,7 @@ export const INSTITUTION = {
   website: 'https://sasurieengg.com',
   anniversary: '25 Years of Academic Excellence (Silver Jubilee)',
   founder: {
-    name: 'Sri. A. M. KANDASAMI',
+    name: 'Sri A. M. KANDASWAMI',
     title: 'Founder & Chairman',
     photo: '/brand/founder-kandasami-circle.png',
     originalPhoto: '/brand/founder-kandasamy-original.jpg',
@@ -25,20 +25,21 @@ export const EVENT_DETAILS = {
   theme: 'Explore the Future with Embedded Technologies',
   description: '8 Hours. Unlimited Ideas. Real Impact.',
   date: '15th October 2026',
-  rawDate: '2026-10-15T09:30:00',
+  rawDate: '2026-10-15T09:00:00',
   deadlineDate: '2026-10-13T23:59:59',
   deadlineDisplay: '13/10/2026 (11:59 PM)',
-  timing: '9:30 AM – 4:30 PM',
-  reportingTime: '8:30 AM – 9:15 AM',
-  duration: '8 Hours',
+  timing: '9:00 AM – 5:00 PM',
+  eventTiming: '9:00 AM – 5:00 PM',
+  reportingTime: '8:30 AM',
+  duration: '9:00 AM – 5:00 PM',
   venue: 'ABINANTHAM HALL',
   feePerHead: 300,
   teamSizes: ['1 Member', '2 Members', '3 Members', '4 Members'] as const,
   upi: {
     id: 'mrkandasamy1983-6@oksbi',
     name: 'R. KANDASAMY',
-    role: 'Convenor & HOD, ECE',
-    bank: 'State Bank of India',
+    role: 'Co-convener & HOD, ECE',
+    bank: 'INDIAN OVERSEAS BANK',
     rawQrText: 'upi://pay?pa=mrkandasamy1983-6@oksbi&pn=R.KANDASAMY&cu=INR',
   },
   googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSczwFr0FMT5uBfGsBdRUqUeinYGlEM83ZLCt3AACXgwv2TNOQ/viewform',
@@ -113,91 +114,153 @@ export const DOMAINS: DomainInfo[] = [
 ];
 
 export const COMMITTEE = {
+  // 1. Chairman - Sri A.M.Kandaswami, Chief patron
   chiefPatron: {
     role: 'Chief Patron',
-    name: 'Dr. R. KIRUBAKARAN',
-    designation: 'Principal',
-  },
-  patron: {
-    role: 'Patron',
-    name: 'Sri. A. M. KANDASAMI',
-    designation: 'Founder & Chairman, Sasurie Group',
+    position: 'Chairman',
+    name: 'Sri A.M. Kandaswami',
+    designation: 'Chairman, Sasurie Institutions',
     photo: '/brand/founder-kandasami-circle.png',
   },
-  convenor: {
-    role: 'Convenor',
-    name: 'Mr. R. KANDASAMY',
-    designation: 'HOD, Department of ECE',
-    upiId: 'mrkandasamy1983-6@oksbi',
+  // 2. Secretary - Smt. K. Savitha Moganraj, patron
+  patron: {
+    role: 'Patron',
+    position: 'Secretary',
+    name: 'Smt. K. Savitha Moganraj',
+    designation: 'Secretary, Sasurie College of Engineering',
+    photo: '/brand/secretary-savitha-circle.png',
+    originalPhoto: '/brand/secretary-savitha.png',
   },
-  facultyCoordinators: [
+  // 3. Principal - Dr.R. Kiruba Shankar, Convener
+  convener: {
+    role: 'Convener',
+    position: 'Principal',
+    name: 'Dr. R. Kiruba Shankar',
+    designation: 'Principal, Sasurie College of Engineering',
+    photo: '/brand/principal-kiruba-circle.png',
+    originalPhoto: '/brand/principal-kiruba-original.png',
+  },
+  // 4. HOD - Mr.R. Kandasamy, Co-convener
+  coConvener: {
+    role: 'Co-convener',
+    position: 'HOD',
+    name: 'Mr. R. Kandasamy',
+    designation: 'HOD, Department of ECE',
+    photo: '/brand/coconvener-kandasamy-circle.png',
+    originalPhoto: '/brand/coconvener-kandasamy.jpg',
+    upiId: 'mrkandasamy1983-6@oksbi',
+    bank: 'INDIAN OVERSEAS BANK',
+  },
+  // 5. Staffs coordinator - Dr.G. Sivarama Subramanium, Prof.T. Manickam
+  staffCoordinators: [
     {
-      name: 'Dr. G. SIVARAMA SUBRAMANIAM',
+      name: 'Dr. G. Sivarama Subramanium',
       designation: 'Assistant Professor / ECE',
+      photo: '/brand/staff-sivarama.png',
     },
     {
-      name: 'Prof. T. MANICKAM',
+      name: 'Prof. T. Manickam',
       designation: 'Assistant Professor / ECE',
+      photo: '/brand/staff-manickam.png',
     },
   ],
+  // Retaining facultyCoordinators alias for backwards-compatibility
+  facultyCoordinators: [
+    {
+      name: 'Dr. G. Sivarama Subramanium',
+      designation: 'Assistant Professor / ECE',
+      photo: '/brand/staff-sivarama.png',
+    },
+    {
+      name: 'Prof. T. Manickam',
+      designation: 'Assistant Professor / ECE',
+      photo: '/brand/staff-manickam.png',
+    },
+  ],
+  // 6. Students coordinator - S. Athish, K. Kishore Kumar
   studentCoordinators: [
     {
-      name: 'S. ATHISH',
+      name: 'S. Athish',
       role: 'Secretary / ECE',
       phone: '+91 9840831058',
       phoneClean: '9840831058',
+      photo: '/brand/student-athish.png',
     },
     {
-      name: 'K. KISHORE KUMAR',
+      name: 'K. Kishore Kumar',
       role: 'SLC / ECE',
       phone: '+91 97894 37018',
       phoneClean: '9789437018',
+      photo: '/brand/student-kishore.png',
     },
   ],
 };
 
 export const SCHEDULE_ITEMS = [
   {
-    time: '08:30 AM – 09:15 AM',
-    title: 'Reporting & Kit Verification',
-    description: 'Team arrival at Abinantham Hall, physical attendance check, Wi-Fi credential distribution, and workspace allocation.',
-    badge: 'Registration',
+    time: '08:00 AM – 08:30 AM',
+    title: 'Reporting, Kit Verification & Desk Setup',
+    description: 'Team arrival at Abinantham Hall, physical attendance check, ID verification, Wi-Fi credentials distribution, and workstation setup.',
+    badge: 'Pre-Game · 08:00 AM',
+    phase: 'pre-game',
   },
   {
-    time: '09:30 AM – 10:00 AM',
-    title: 'Inaugural Ceremony & Briefing',
-    description: 'Welcome address by Chief Patron Dr. R. Kirubakaran and Convenor Mr. R. Kandasamy. Rule explanation and evaluation criteria.',
-    badge: 'Kickoff',
+    time: '08:30 AM – 09:00 AM',
+    title: 'Inaugural Ceremony & Rules Briefing',
+    description: 'Welcome address by Chief Patron Sri A.M. Kandaswami, Patron Smt. K. Savitha Moganraj, Convener Dr. R. Kiruba Shankar, and Co-convener Mr. R. Kandasamy. Hardware guidelines and kickoff countdown.',
+    badge: 'Pre-Game · Inaugural',
+    phase: 'pre-game',
   },
   {
-    time: '10:00 AM',
-    title: 'Hackathon Commences (8h Clock Starts)',
-    description: 'Development sprints start across all 7 technology domains. Hardware integration, circuit assembly, and firmware programming.',
-    badge: 'Active Sprint',
+    time: '09:00 AM',
+    title: 'THE GAME COMMENCES: 8-HOUR HACK SPRINT',
+    description: 'The official competition timer starts! Active hardware assembly, microcontroller flashing, sensor calibration, and firmware development across all 7 technology domains.',
+    badge: 'GAME START (09:00 AM)',
+    phase: 'game',
+    highlight: true,
   },
   {
     time: '11:30 AM – 11:45 AM',
     title: 'Morning High-Tea & Refreshments',
-    description: 'Energizing refreshments served to all participants at the hall pantry without disrupting sprint workflow.',
-    badge: 'Break',
+    description: 'Hot tea, coffee, and energy snacks served at the hall pantry without interrupting ongoing team coding and circuit testing.',
+    badge: 'In-Game Fuel',
+    phase: 'game',
   },
   {
     time: '01:00 PM – 01:45 PM',
-    title: 'Networking Lunch & Mid-Way Mentoring Review',
-    description: 'Hot buffet lunch provided. Faculty and expert jury visit team booths for preliminary architecture check.',
-    badge: 'Lunch & Review',
+    title: 'Networking Lunch & Mid-Sprint Mentorship',
+    description: 'Nutritious buffet lunch served. Faculty coordinators and technical jury mentors conduct booth walkthroughs to inspect circuit architecture and progress.',
+    badge: 'In-Game Break',
+    phase: 'game',
   },
   {
-    time: '03:30 PM',
-    title: 'Code Freeze & Live Demonstrations',
-    description: 'Hardware prototypes locked. Teams present their working system, schematic design, and impact metrics to the evaluation panel.',
-    badge: 'Judging',
+    time: '04:15 PM – 05:00 PM',
+    title: 'Final Integration & Circuit Packaging',
+    description: 'Teams wrap up their firmware, finalize sensor-actuator communication, package hardware into enclosures, and prepare live demo test rigs.',
+    badge: 'Final Rush',
+    phase: 'game',
   },
   {
-    time: '04:15 PM – 04:45 PM',
-    title: 'Valedictory & Prize Distribution',
-    description: 'Announcement of winning teams, distribution of cash rewards, trophies, and certificates for all participants.',
-    badge: 'Awards',
+    time: '05:00 PM',
+    title: 'THE GAME CONCLUDES: CODE & HARDWARE FREEZE',
+    description: 'Promptly at 5:00 PM, the 8-hour sprint ends! All coding, soldering, and circuit changes must cease immediately. Test benches are locked for jury review.',
+    badge: 'GAME OVER (05:00 PM)',
+    phase: 'game',
+    highlight: true,
+  },
+  {
+    time: '05:00 PM – 05:45 PM',
+    title: 'Live Prototype Demonstrations & Jury Assessment',
+    description: 'Expert jury panel visits each team workstation for live hardware demonstrations, circuit schematic auditing, firmware code execution check, and technical Q&A defense.',
+    badge: 'Post-Game · Jury Demos',
+    phase: 'post-game',
+  },
+  {
+    time: '05:45 PM – 06:30 PM',
+    title: 'Valedictory Ceremony & Prize Distribution',
+    description: 'Valedictory address, announcement of winning champions and runners-up across domains, distribution of cash awards, trophies, and official certificates.',
+    badge: 'Post-Game · Valedictory',
+    phase: 'post-game',
   },
 ];
 
@@ -214,7 +277,7 @@ export const BENEFITS = [
   },
   {
     title: 'Complimentary Lunch & Snacks',
-    description: 'Nutritious lunch and multiple rounds of refreshments provided throughout the 8-hour sprint to keep teams fueled.',
+    description: 'Nutritious lunch and refreshments provided during the event to keep teams energized.',
     stat: 'Included',
   },
   {
@@ -225,9 +288,9 @@ export const BENEFITS = [
 ];
 
 export const GUIDELINES = [
-  'Teams must consist of 2 to 4 members from recognized engineering / polytechnic institutions.',
+  'Teams must consist of 1 to 4 members from recognized engineering / polytechnic institutions.',
   'Participants should bring their own laptops, microcontrollers (STM32, ESP32, Arduino, Raspberry Pi, etc.), sensors, and connecting cables.',
-  'Core code and hardware prototyping must be assembled during the 8-hour sprint period.',
+  'Core code and hardware prototyping must be assembled during the 9:00 AM – 5:00 PM event period.',
   'Registration fee is ₹300 per head (e.g. 2 members = ₹600, 3 members = ₹900, 4 members = ₹1200).',
   'Payment must be made via UPI to mrkandasamy1983-6@oksbi and the UTR / Transaction ID along with screenshot must be submitted.',
   'Decisions of the evaluation jury and convenor will be final and binding.',

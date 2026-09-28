@@ -54,10 +54,10 @@ export const PaymentQRCard: React.FC<PaymentQRCardProps> = ({
             <div className="flex items-center gap-1.5 sm:gap-2">
               <h4 className="font-display text-sm sm:text-lg uppercase tracking-tight text-white leading-tight">{payeeName}</h4>
               <span className="font-mono text-[8px] sm:text-[10px] text-[#FDB515] border border-[#FDB515]/30 bg-[#FDB515]/10 px-1 sm:px-1.5 py-0.5">
-                CONVENOR
+                CO-CONVENER
               </span>
             </div>
-            <p className="font-mono text-[10px] sm:text-xs text-[#888]">HOD, ECE · State Bank of India</p>
+            <p className="font-mono text-[10px] sm:text-xs text-[#888]">HOD, ECE · INDIAN OVERSEAS BANK</p>
           </div>
         </div>
 

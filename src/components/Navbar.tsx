@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
             onClick={() => scrollTo('schedule')}
             className="hover:text-[#FDB515] transition-colors cursor-pointer"
           >
-            Schedule
+            Timing
           </button>
           <button
             onClick={() => scrollTo('guidelines')}
@@ -181,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
             onClick={() => scrollTo('schedule')}
             className="block w-full text-left py-2 text-[#F2F2EA] hover:text-[#FDB515] border-b border-[#222]"
           >
-            8-Hour Timeline
+            Event Timing (9 AM – 5 PM)
           </button>
           <button
             onClick={() => scrollTo('guidelines')}

@@ -69,7 +69,7 @@ export const InstitutionalBanner: React.FC = () => {
                 {!founderImgError ? (
                   <img
                     src="/brand/founder-kandasami-circle.png"
-                    alt="Sri A. M. Kandasami"
+                    alt="Sri A. M. Kandaswami"
                     referrerPolicy="no-referrer"
                     className="h-full w-full rounded-full object-cover"
                     onError={() => setFounderImgError(true)}
@@ -82,7 +82,7 @@ export const InstitutionalBanner: React.FC = () => {
               </div>
               <div className="flex flex-col text-left">
                 <span className="font-heading text-[10px] font-black tracking-tight text-[#F2F2EA] leading-tight">
-                  Sri. A. M. KANDASAMI
+                  Sri A. M. KANDASWAMI
                 </span>
                 <span className="text-[7.5px] font-mono text-[#FDB515] font-semibold uppercase">
                   Founder & Chairman
@@ -140,7 +140,7 @@ export const InstitutionalBanner: React.FC = () => {
                 {!founderImgError ? (
                   <img
                     src="/brand/founder-kandasami-circle.png"
-                    alt="Sri A. M. Kandasami - Founder & Chairman"
+                    alt="Sri A. M. Kandaswami - Founder & Chairman"
                     referrerPolicy="no-referrer"
                     className="h-full w-full rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
                     onError={() => setFounderImgError(true)}
@@ -154,7 +154,7 @@ export const InstitutionalBanner: React.FC = () => {
 
               <div className="flex flex-col text-left">
                 <span className="font-heading text-xs font-black tracking-tight text-[#F2F2EA] leading-tight">
-                  Sri. A. M. KANDASAMI
+                  Sri A. M. KANDASWAMI
                 </span>
                 <span className="text-[9px] font-mono text-[#FDB515] font-semibold uppercase tracking-wider">
                   Founder & Chairman
