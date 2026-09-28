@@ -16,10 +16,13 @@ const CoordinatorAvatar: React.FC<CoordinatorAvatarProps> = ({
   name,
   borderColor = '#FDB515',
 }) => {
-  const photo =
-    safeGetItem(`embedathon_photo_${id}`) ||
-    (id === 'coconvener' ? safeGetItem('embedathon_coconvener_photo') : null) ||
-    defaultPhoto;
+  const [currentSrc, setCurrentSrc] = React.useState<string>(() => {
+    return (
+      safeGetItem(`embedathon_photo_${id}`) ||
+      (id === 'coconvener' ? safeGetItem('embedathon_coconvener_photo') : null) ||
+      defaultPhoto
+    );
+  });
 
   return (
     <div className="flex flex-col items-center my-3 sm:my-4">
@@ -29,9 +32,14 @@ const CoordinatorAvatar: React.FC<CoordinatorAvatarProps> = ({
         style={{ borderColor }}
       >
         <img
-          src={photo}
+          src={currentSrc}
           alt={name}
           referrerPolicy="no-referrer"
+          onError={() => {
+            if (currentSrc !== defaultPhoto) {
+              setCurrentSrc(defaultPhoto);
+            }
+          }}
           className="h-full w-full rounded-full object-cover"
         />
       </div>

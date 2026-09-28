@@ -1,4 +1,12 @@
 import { DomainInfo, RegistrationRecord } from '../types';
+import founderPhoto from '../assets/brand/founder-kandasami-circle.png';
+import secretaryPhoto from '../assets/brand/secretary-savitha-circle.png';
+import principalPhoto from '../assets/brand/principal-kiruba-circle.png';
+import coconvenerPhoto from '../assets/brand/coconvener-kandasamy-circle.png';
+import staffSivaramaPhoto from '../assets/brand/staff-sivarama.png';
+import staffManickamPhoto from '../assets/brand/staff-manickam.png';
+import studentAthishPhoto from '../assets/brand/student-athish.png';
+import studentKishorePhoto from '../assets/brand/student-kishore.png';
 
 export const INSTITUTION = {
   trust: 'Ponmudi Muthusamy Gounder Charitable Trust',
@@ -12,7 +20,7 @@ export const INSTITUTION = {
   founder: {
     name: 'Sri A. M. KANDASWAMI',
     title: 'Founder & Chairman',
-    photo: '/brand/founder-kandasami-circle.png',
+    photo: founderPhoto,
     originalPhoto: '/brand/founder-kandasamy-original.jpg',
   },
 };
@@ -120,7 +128,7 @@ export const COMMITTEE = {
     position: 'Chairman',
     name: 'Sri A.M. Kandaswami',
     designation: 'Chairman, Sasurie Institutions',
-    photo: '/brand/founder-kandasami-circle.png',
+    photo: founderPhoto,
   },
   // 2. Secretary - Smt. K. Savitha Moganraj, patron
   patron: {
@@ -128,7 +136,7 @@ export const COMMITTEE = {
     position: 'Secretary',
     name: 'Smt. K. Savitha Moganraj',
     designation: 'Secretary, Sasurie College of Engineering',
-    photo: '/brand/secretary-savitha-circle.png',
+    photo: secretaryPhoto,
     originalPhoto: '/brand/secretary-savitha.png',
   },
   // 3. Principal - Dr.R. Kiruba Shankar, Convener
@@ -137,7 +145,7 @@ export const COMMITTEE = {
     position: 'Principal',
     name: 'Dr. R. Kiruba Shankar',
     designation: 'Principal, Sasurie College of Engineering',
-    photo: '/brand/principal-kiruba-circle.png',
+    photo: principalPhoto,
     originalPhoto: '/brand/principal-kiruba-original.png',
   },
   // 4. HOD - Mr.R. Kandasamy, Co-convener
@@ -146,7 +154,7 @@ export const COMMITTEE = {
     position: 'HOD',
     name: 'Mr. R. Kandasamy',
     designation: 'HOD, Department of ECE',
-    photo: '/brand/coconvener-kandasamy-circle.png',
+    photo: coconvenerPhoto,
     originalPhoto: '/brand/coconvener-kandasamy.jpg',
     upiId: 'mrkandasamy1983-6@oksbi',
     bank: 'INDIAN OVERSEAS BANK',
@@ -156,12 +164,12 @@ export const COMMITTEE = {
     {
       name: 'Dr. G. Sivarama Subramanium',
       designation: 'Assistant Professor / ECE',
-      photo: '/brand/staff-sivarama.png',
+      photo: staffSivaramaPhoto,
     },
     {
       name: 'Prof. T. Manickam',
       designation: 'Assistant Professor / ECE',
-      photo: '/brand/staff-manickam.png',
+      photo: staffManickamPhoto,
     },
   ],
   // Retaining facultyCoordinators alias for backwards-compatibility
@@ -169,12 +177,12 @@ export const COMMITTEE = {
     {
       name: 'Dr. G. Sivarama Subramanium',
       designation: 'Assistant Professor / ECE',
-      photo: '/brand/staff-sivarama.png',
+      photo: staffSivaramaPhoto,
     },
     {
       name: 'Prof. T. Manickam',
       designation: 'Assistant Professor / ECE',
-      photo: '/brand/staff-manickam.png',
+      photo: staffManickamPhoto,
     },
   ],
   // 6. Students coordinator - S. Athish, K. Kishore Kumar
@@ -184,14 +192,14 @@ export const COMMITTEE = {
       role: 'Secretary / ECE',
       phone: '+91 9840831058',
       phoneClean: '9840831058',
-      photo: '/brand/student-athish.png',
+      photo: studentAthishPhoto,
     },
     {
       name: 'K. Kishore Kumar',
       role: 'SLC / ECE',
       phone: '+91 97894 37018',
       phoneClean: '9789437018',
-      photo: '/brand/student-kishore.png',
+      photo: studentKishorePhoto,
     },
   ],
 };
