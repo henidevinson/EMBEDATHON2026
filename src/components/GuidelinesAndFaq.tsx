@@ -20,7 +20,7 @@ export const GuidelinesAndFaq: React.FC = () => {
     },
     {
       q: 'How does the payment confirmation and gate pass work?',
-      a: 'Once you transfer ₹300 per head to UPI ID mrkandasamy1983-6@oksbi (INDIAN OVERSEAS BANK · Account Holder: Mr. R. Kandasamy) and submit your 12-digit UTR and screenshot, our committee verifies the transaction and your team is issued an official Gate Pass for entry.',
+      a: 'Once you transfer ₹300 per head to UPI ID mrkandasamy1983-6@oksbi (INDIAN OVERSEAS BANK · Account Holder: Prof. R. Kandasamy) and submit your 12-digit UTR and screenshot in the official registration form, our committee verifies the transaction and your team is issued an official Gate Pass for entry.',
     },
     {
       q: 'Will lunch and refreshments be provided?',

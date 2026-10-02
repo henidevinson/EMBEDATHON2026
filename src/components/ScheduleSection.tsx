@@ -37,14 +37,14 @@ export const ScheduleSection: React.FC = () => {
                   Event Timing
                 </span>
                 <div className="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight flex flex-wrap items-baseline gap-2">
-                  <span className="text-[#FDB515]">9:00 AM</span>
+                  <span className="text-[#FDB515]">9:30 AM</span>
                   <span className="text-[#FF4A12] text-2xl sm:text-4xl">TO</span>
-                  <span className="text-[#FDB515]">5:00 PM</span>
+                  <span className="text-[#FDB515]">5:30 PM</span>
                 </div>
               </div>
 
               <p className="font-body text-sm sm:text-base text-[#F2F2EA]/80 leading-relaxed max-w-xl">
-                The event runs promptly from <strong className="text-white font-bold">9:00 AM to 5:00 PM</strong> on <strong className="text-[#FDB515] font-bold">{EVENT_DETAILS.date}</strong>. Registered participants will have full access to dedicated workstations, power test benches, high-speed Wi-Fi, and expert faculty mentorship.
+                The event runs promptly from <strong className="text-white font-bold">9:30 AM to 5:30 PM</strong> on <strong className="text-[#FDB515] font-bold">{EVENT_DETAILS.date}</strong>. Registered participants will have full access to dedicated workstations, power test benches, high-speed Wi-Fi, and expert faculty mentorship.
               </p>
             </div>
 

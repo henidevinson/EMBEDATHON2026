@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Lock, QrCode, Flame, Ticket, Maximize2, Minimize2 } from 'lucide-react';
+import { Menu, X, Flame, Maximize2, Minimize2, ExternalLink, QrCode } from 'lucide-react';
 import { EVENT_DETAILS } from '../data/eventData';
 
 interface NavbarProps {
-  onOpenAdmin: () => void;
+  onRegisterClick: () => void;
   onOpenQR: () => void;
-  registrationsCount?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onRegisterClick, onOpenQR }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -95,11 +94,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
             Committee
           </button>
           <button
-            onClick={() => scrollTo('register')}
-            className="hover:text-[#FF4A12] transition-colors cursor-pointer flex items-center gap-1 text-[#FDB515]"
+            onClick={onRegisterClick}
+            className="hover:text-[#FF4A12] transition-colors cursor-pointer flex items-center gap-1.5 text-[#FDB515] font-bold"
           >
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#FF4A12] animate-pulse" />
-            Register
+            <span className="inline-block h-2 w-2 rounded-full bg-[#FF4A12] animate-pulse" />
+            <span>Register</span>
           </button>
         </nav>
 
@@ -124,31 +123,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
             )}
           </button>
 
+          {/* UPI QR Modal Trigger */}
           <button
             onClick={onOpenQR}
-            title="Scan Payment QR"
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-mono font-bold text-[#FDB515] bg-[#050505] hover:bg-[#FDB515]/10 border border-[#FDB515]/40 rounded-none shadow-[2px_2px_0_#7A0606] transition-all cursor-pointer"
+            title="Scan Official UPI QR Code"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-mono font-bold text-[#FDB515] bg-[#050505] hover:bg-[#FDB515]/10 border border-[#FDB515]/50 rounded-none shadow-[2px_2px_0_#7A0606] hover:shadow-[3px_3px_0_#FDB515] transition-all cursor-pointer"
           >
             <QrCode className="h-3.5 w-3.5 text-[#FDB515]" />
-            <span>UPI QR</span>
+            <span className="hidden xs:inline">UPI QR</span>
+            <span className="xs:hidden">QR</span>
           </button>
 
           <button
-            onClick={onOpenAdmin}
-            title="Organizer & Admin Portal (Restricted Access)"
-            className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-mono font-bold text-[#aaa] hover:text-[#FDB515] bg-[#050505] hover:bg-[#111] border border-[#333] hover:border-[#FDB515] rounded-none shadow-[2px_2px_0_#222] transition-all cursor-pointer"
-          >
-            <Lock className="h-3.5 w-3.5 text-[#FDB515]" />
-            <span className="hidden sm:inline">Admin Portal</span>
-            <span className="sm:hidden">Admin</span>
-          </button>
-
-          <button
-            onClick={() => scrollTo('register')}
-            className="relative px-2.5 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-display uppercase tracking-wider text-[#050505] bg-[#FDB515] hover:bg-[#ffb703] border-2 border-[#050505] shadow-[2px_2px_0_#7A0606] sm:shadow-[4px_4px_0_#7A0606] hover:shadow-[5px_5px_0_#FF4A12] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+            onClick={onRegisterClick}
+            className="relative px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-display uppercase tracking-wider text-[#050505] bg-[#FDB515] hover:bg-[#ffb703] border-2 border-[#050505] shadow-[2px_2px_0_#7A0606] sm:shadow-[4px_4px_0_#7A0606] hover:shadow-[5px_5px_0_#FF4A12] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer flex items-center gap-1.5"
           >
             <span className="hidden xs:inline">Register Now</span>
             <span className="xs:hidden">Register</span>
+            <ExternalLink className="h-3.5 w-3.5" />
           </button>
 
           {/* Mobile hamburger */}
@@ -181,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
             onClick={() => scrollTo('schedule')}
             className="block w-full text-left py-2 text-[#F2F2EA] hover:text-[#FDB515] border-b border-[#222]"
           >
-            Event Timing (9 AM – 5 PM)
+            Event Timing (9:30 AM – 5:30 PM)
           </button>
           <button
             onClick={() => scrollTo('guidelines')}
@@ -195,31 +187,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenQR }) => {
           >
             Organizing Committee
           </button>
-          <button
-            onClick={() => scrollTo('register')}
-            className="block w-full text-left py-2 text-[#FDB515] font-bold"
-          >
-            ★ Event Registration
-          </button>
-          <div className="pt-2 flex gap-2">
+          
+          <div className="pt-2 space-y-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenQR();
               }}
-              className="flex-1 py-2 text-xs font-mono font-bold bg-[#050505] border border-[#FDB515] text-[#FDB515]"
+              className="w-full py-2.5 text-center text-xs font-mono font-bold uppercase tracking-wider bg-[#050505] text-[#FDB515] border border-[#FDB515] shadow-[2px_2px_0_#7A0606] flex items-center justify-center gap-2"
             >
-              Scan UPI QR
+              <QrCode className="h-4 w-4" />
+              <span>Scan UPI QR Code (Google Pay)</span>
             </button>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenAdmin();
+                onRegisterClick();
               }}
-              className="flex-1 py-2 text-xs font-mono font-bold bg-[#050505] border border-[#333] text-[#aaa] hover:text-[#FDB515] hover:border-[#FDB515] flex items-center justify-center gap-1.5"
+              className="w-full py-3 text-center text-sm font-display uppercase tracking-wider bg-[#FDB515] text-[#050505] font-black border-2 border-[#050505] shadow-[3px_3px_0_#7A0606] flex items-center justify-center gap-2"
             >
-              <Lock className="h-3.5 w-3.5 text-[#FDB515]" />
-              <span>Admin Portal</span>
+              <span>Register Team (Official Form)</span>
+              <ExternalLink className="h-4 w-4" />
             </button>
           </div>
         </div>

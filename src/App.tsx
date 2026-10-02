@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { InstitutionalBanner } from './components/InstitutionalBanner';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -11,120 +11,31 @@ import { RegistrationPortal } from './components/RegistrationPortal';
 import { CommitteeSection } from './components/CommitteeSection';
 import { GuidelinesAndFaq } from './components/GuidelinesAndFaq';
 import { Footer } from './components/Footer';
-import { OrganizerSheetModal } from './components/OrganizerSheetModal';
-import { AdminLoginModal } from './components/AdminLoginModal';
 import { PaymentQRCard } from './components/PaymentQRCard';
-import { RegistrationRecord, TechnologyDomain } from './types';
-import { INITIAL_REGISTRATIONS } from './data/eventData';
-import { cleanupBloatedStorage, safeSetItem, safeGetItem } from './utils/storage';
+import { TechnologyDomain } from './types';
+import { EVENT_DETAILS } from './data/eventData';
 
 export default function App() {
-  // Proactively purge oversized legacy base64 strings to prevent QuotaExceededError
-  useEffect(() => {
-    cleanupBloatedStorage();
-  }, []);
-
-  const [registrations, setRegistrations] = useState<RegistrationRecord[]>(() => {
-    try {
-      const saved = safeGetItem('embedathon_2026_registrations');
-      if (saved) {
-        const parsed: RegistrationRecord[] = JSON.parse(saved);
-        // Clean out any legacy mock demo records
-        return parsed.filter(
-          (r) => !['EMB26-1042', 'EMB26-1087', 'EMB26-1123'].includes(r.id)
-        );
-      }
-    } catch (e) {
-      console.error('Failed to load registrations from local storage', e);
-    }
-    return INITIAL_REGISTRATIONS;
-  });
-
-  useEffect(() => {
-    try {
-      // Save registrations safely
-      const payload = JSON.stringify(registrations);
-      const success = safeSetItem('embedathon_2026_registrations', payload);
-      if (!success) {
-        // Fallback: strip heavyweight screenshot dataUrls if quota reached
-        const lightweight = registrations.map((r) => ({
-          ...r,
-          screenshotUrl: r.screenshotUrl && r.screenshotUrl.length > 5000 ? '' : r.screenshotUrl,
-        }));
-        safeSetItem('embedathon_2026_registrations', JSON.stringify(lightweight));
-      }
-    } catch (e) {
-      console.warn('Failed to save registrations safely to local storage', e);
-    }
-  }, [registrations]);
-
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => {
-    return sessionStorage.getItem('embedathon_admin_auth') === 'true';
-  });
-  const [adminLoginModalOpen, setAdminLoginModalOpen] = useState(false);
-  const [sheetModalOpen, setSheetModalOpen] = useState(false);
-  const [qrModalOpen, setQrModalOpen] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState<TechnologyDomain | null>(null);
+  const [qrModalOpen, setQrModalOpen] = useState(false);
 
-  const handleOpenAdmin = () => {
-    if (isAdminLoggedIn) {
-      setSheetModalOpen(true);
-    } else {
-      setAdminLoginModalOpen(true);
-    }
-  };
-
-  const handleAdminLoginSuccess = () => {
-    setIsAdminLoggedIn(true);
-    setAdminLoginModalOpen(false);
-    setSheetModalOpen(true);
-  };
-
-  const handleAdminLogout = () => {
-    sessionStorage.removeItem('embedathon_admin_auth');
-    sessionStorage.removeItem('embedathon_admin_email');
-    setIsAdminLoggedIn(false);
-    setSheetModalOpen(false);
-  };
-
-  const handleRegistrationSuccess = (newRecord: RegistrationRecord) => {
-    setRegistrations((prev) => [newRecord, ...prev]);
-  };
-
-  const handleUpdateStatus = (
-    id: string,
-    newStatus: 'Pending Verification' | 'Verified' | 'Flagged'
-  ) => {
-    setRegistrations((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: newStatus } : r))
-    );
-  };
-
-  const handleDeleteRecord = (id: string) => {
-    setRegistrations((prev) => prev.filter((r) => r.id !== id));
-  };
-
-  const handleResetData = () => {
-    if (confirm('Clear registrations and start completely fresh?')) {
-      setRegistrations([]);
-      localStorage.removeItem('embedathon_2026_registrations');
-    }
+  // Universal handler: Automatically redirects the user to the official registration form
+  const handleRegisterRedirect = () => {
+    window.open(EVENT_DETAILS.registrationFormUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleSelectDomain = (domain: TechnologyDomain) => {
     setSelectedDomain(domain);
-    const registerEl = document.getElementById('register');
-    if (registerEl) {
-      registerEl.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Automatically redirect to the registration form when user clicks register on a domain
+    handleRegisterRedirect();
   };
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#F2F2EA] flex flex-col font-body selection:bg-[#FDB515] selection:text-[#050505] relative overflow-x-hidden">
-      {/* Vyugam-style Floating Atmospheric Embers & Circuit Grid */}
+      {/* Floating Atmospheric Embers & Circuit Grid */}
       <EmbersBackground />
 
-      {/* Official College Institutional Master Header Banner (Dark Theme - Seamless, No White Background) */}
+      {/* Official College Institutional Master Header Banner */}
       <InstitutionalBanner />
 
       {/* High-Voltage Announcement Ticker Tape */}
@@ -132,19 +43,15 @@ export default function App() {
 
       {/* Navigation Header */}
       <Navbar
-        onOpenAdmin={handleOpenAdmin}
+        onRegisterClick={handleRegisterRedirect}
         onOpenQR={() => setQrModalOpen(true)}
-        registrationsCount={registrations.length}
       />
 
       {/* Main Content Sections */}
       <main className="flex-1 relative z-10">
-        {/* Hero Section with Massive Brutalist Typography and Countdown */}
+        {/* Hero Section with Brutalist Typography and Countdown */}
         <Hero
-          onRegisterClick={() => {
-            const el = document.getElementById('register');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onRegisterClick={handleRegisterRedirect}
           onOpenQR={() => setQrModalOpen(true)}
         />
 
@@ -157,14 +64,13 @@ export default function App() {
         {/* 7 Technology Domains */}
         <DomainsSection onSelectDomain={handleSelectDomain} />
 
-        {/* 8-Hour Industrial Schedule */}
+        {/* Event Timing (9:30 AM – 5:30 PM) */}
         <ScheduleSection />
 
-        {/* Official Registration Portal (Interactive G-Form + Live Iframe G-Form + Apps Script) */}
+        {/* Official Registration & UPI QR Section (Direct Access + Payment Card + Live Form) */}
         <RegistrationPortal
           selectedDomainFromCard={selectedDomain}
-          onRegistrationSuccess={handleRegistrationSuccess}
-          registrationsCount={registrations.length}
+          onOpenQRModal={() => setQrModalOpen(true)}
         />
 
         {/* Leadership & Organizing Committee */}
@@ -176,32 +82,22 @@ export default function App() {
 
       {/* Footer */}
       <Footer
-        onOpenAdmin={handleOpenAdmin}
+        onRegisterClick={handleRegisterRedirect}
         onOpenQR={() => setQrModalOpen(true)}
       />
 
-      {/* Admin Authentication Modal */}
-      <AdminLoginModal
-        isOpen={adminLoginModalOpen}
-        onClose={() => setAdminLoginModalOpen(false)}
-        onSuccess={handleAdminLoginSuccess}
-      />
-
-      {/* Responses Sheet Modal (Accessible only after Admin Login) */}
-      <OrganizerSheetModal
-        isOpen={sheetModalOpen}
-        onClose={() => setSheetModalOpen(false)}
-        registrations={registrations}
-        onUpdateStatus={handleUpdateStatus}
-        onDeleteRecord={handleDeleteRecord}
-        onResetData={handleResetData}
-        onLogout={handleAdminLogout}
-      />
-
-      {/* Standalone UPI QR Modal */}
+      {/* Official Google Pay UPI QR Modal Popup */}
       {qrModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-sm animate-fadeIn">
-          <div className="relative w-full max-w-md">
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-sm animate-fadeIn"
+          onClick={() => setQrModalOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-md"
+            onClick={(e) => e.stopPropagation()}
+          >
             <PaymentQRCard
               memberCount={2}
               showModalClose={true}

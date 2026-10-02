@@ -116,7 +116,7 @@ export const InstitutionalBanner: React.FC = () => {
             <div className="flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-3 gap-y-0.5 text-[9px] sm:text-xs text-[#F2F2EA]/80 font-heading">
               <span className="flex items-center gap-1">
                 <ShieldCheck className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#FDB515] shrink-0" />
-                <span>Approved by <strong className="text-[#F2F2EA]">AICTE</strong> & Affiliated to <strong className="text-[#F2F2EA]">Anna Univ</strong></span>
+                <span>Approved by <strong className="text-[#F2F2EA]">AICTE</strong> & Affiliated to <strong className="text-[#F2F2EA]">Anna University</strong></span>
               </span>
               <span className="hidden sm:inline text-[#262626]">|</span>
               <span className="flex items-center gap-1">

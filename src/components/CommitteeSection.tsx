@@ -194,7 +194,7 @@ export const CommitteeSection: React.FC = () => {
             </p>
           </div>
 
-          {/* 4. HOD - Mr.R. Kandasamy, Co-convener */}
+          {/* 4. HOD - Prof. R. Kandasamy, Co-convener */}
           <div className="border-2 border-[#262626] bg-[#0A0806] p-5 sm:p-6 shadow-brutal flex flex-col justify-between hover:border-[#FDB515] transition-all group">
             <div>
               <div className="flex items-center justify-between mb-3">
