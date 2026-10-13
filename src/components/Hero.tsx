@@ -154,7 +154,7 @@ export const Hero: React.FC<HeroProps> = ({ onRegisterClick, onOpenQR }) => {
                   Registration Closes In
                 </span>
                 <span className="font-mono text-[10px] sm:text-xs font-bold text-[#FF4A12] bg-[#7A0606]/20 border border-[#7A0606] px-1.5 sm:px-2 py-0.5">
-                  13 OCT 2026
+                  15 OCT 2026
                 </span>
               </div>
 
