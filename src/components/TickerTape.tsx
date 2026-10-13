@@ -9,7 +9,7 @@ export const TickerTape: React.FC = () => {
     { text: '15TH OCTOBER 2026', icon: <Zap className="h-3.5 w-3.5 text-[#7A0606]" /> },
     { text: 'VENUE: ABINANTHAM HALL', icon: <AlertTriangle className="h-3.5 w-3.5 text-[#050505]" /> },
     { text: 'REGISTRATION: ₹300 / HEAD', icon: <Award className="h-3.5 w-3.5 text-[#FF4A12]" /> },
-    { text: 'DEADLINE: 13/10/2026', icon: <Clock className="h-3.5 w-3.5 text-[#7A0606]" /> },
+    { text: `DEADLINE: ${EVENT_DETAILS.deadlineDisplay}`, icon: <Clock className="h-3.5 w-3.5 text-[#7A0606]" /> },
     { text: 'EXCITING CASH PRIZES & TROPHIES', icon: <Flame className="h-3.5 w-3.5 text-[#050505]" /> },
     { text: 'DEPT OF ELECTRONICS & COMMUNICATION ENGINEERING', icon: <ShieldCheck className="h-3.5 w-3.5 text-[#FF4A12]" /> },
   ];

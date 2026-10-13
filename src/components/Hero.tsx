@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onRegisterClick, onOpenQR }) => {
   }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const targetDate = new Date('2026-10-13T23:59:59').getTime();
+    const targetDate = new Date(EVENT_DETAILS.deadlineDate).getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
